@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#f7b7ca" />
+  <meta name="description" content="A little pink world made for Lila." />
+  <title>Lila — A Little Pink World</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div id="intro" class="intro-screen">
+    <div class="intro-glow intro-glow-a"></div>
+    <div class="intro-glow intro-glow-b"></div>
+
+    <div class="intro-content">
+      <div class="dog-stage intro-dog-stage" id="introDogStage"></div>
+
+      <div class="speech intro-speech" id="introSpeech">
+        <span>bonjour, lila.</span>
+      </div>
+
+      <p class="intro-kicker">a little world made especially for you</p>
+
+      <button class="primary-btn intro-start" id="startExperience">
+        <span>commencer</span>
+        <span class="btn-arrow">→</span>
+      </button>
+
+      <p class="intro-note">turn on your sound for the complete experience</p>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+
+    <div class="background-layer">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+
+      <div class="cloud cloud-1"></div>
+      <div class="cloud cloud-2"></div>
+
+      <div id="ambientParticles"></div>
+      <div id="floatingDecorations"></div>
+    </div>
+
+    <header class="navbar glass">
+      <a href="#home" class="brand">
+        <span class="brand-dot"></span>
+        <span>Lila's little world</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="#home" class="nav-link active">home</a>
+        <a href="#story" class="nav-link">story</a>
+        <a href="#memories" class="nav-link">memories</a>
+        <a href="#letter" class="nav-link">letter</a>
+        <a href="#cake" class="nav-link">cake</a>
+        <a href="#wish" class="nav-link">wish</a>
+        <a href="#love" class="nav-link">love</a>
+        <a href="#surprise" class="nav-link">surprise</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation">
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <div class="mobile-menu glass" id="mobileMenu">
+      <a href="#home">home</a>
+      <a href="#story">story</a>
+      <a href="#memories">memories</a>
+      <a href="#letter">letter</a>
+      <a href="#cake">cake</a>
+      <a href="#wish">wish</a>
+      <a href="#love">love</a>
+      <a href="#surprise">surprise</a>
+    </div>
+
+    <aside class="journey glass" aria-label="Journey progress">
+      <div class="journey-title">the journey</div>
+      <div class="journey-line">
+        <div class="journey-fill" id="journeyFill"></div>
+      </div>
+
+      <div class="journey-items">
+        <button data-section="home" class="journey-dot active"></button>
+        <button data-section="story" class="journey-dot"></button>
+        <button data-section="memories" class="journey-dot"></button>
+        <button data-section="letter" class="journey-dot"></button>
+        <button data-section="cake" class="journey-dot"></button>
+        <button data-section="wish" class="journey-dot"></button>
+        <button data-section="love" class="journey-dot"></button>
+        <button data-section="surprise" class="journey-dot"></button>
+      </div>
+
+      <span id="journeyPercent">0%</span>
+    </aside>
+
+    <main>
+
+      <!-- HOME -->
+      <section id="home" class="section hero-section">
+
+        <div class="hero-copy reveal">
+          <span class="eyebrow">une petite surprise pour toi</span>
+
+          <h1>
+            Joyeux
+            <span>Anniversaire</span>
+            <strong>Lila</strong>
+          </h1>
+
+          <div class="date-pill glass">
+            <span class="date-line"></span>
+            <span>27 Août</span>
+            <span class="date-line"></span>
+          </div>
+
+          <p class="hero-description">
+            bienvenue dans un tout petit monde rose,
+            créé pour célébrer une personne qui mérite
+            quelque chose de doux, lumineux et spécial.
+          </p>
+
+          <a href="#story" class="scroll-btn">
+            <span>commencer le voyage</span>
+            <span class="scroll-arrow">↓</span>
+          </a>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-ring ring-a"></div>
+          <div class="hero-ring ring-b"></div>
+
+          <div class="hero-photo glass">
+            <img src="assets/photo-1.jpg" alt="Lila memory" />
+            <div class="photo-shine"></div>
+          </div>
+
+          <div class="hero-note glass">
+            <span class="note-line"></span>
+            <span>for you, always</span>
+          </div>
+
+          <div class="hero-dog" id="heroDog"></div>
+
+          <div class="floating-paw paw-a"></div>
+          <div class="floating-paw paw-b"></div>
+          <div class="floating-heart heart-a"></div>
+          <div class="floating-heart heart-b"></div>
+        </div>
+
+        <div class="france-clock glass reveal">
+          <div class="clock-heading">
+            <span class="live-dot"></span>
+            <span>france time</span>
+          </div>
+
+          <div class="main-clock">
+            <span id="franceTime">--:--:--</span>
+            <small id="franceZone">Europe/Paris</small>
+          </div>
+
+          <div class="clock-date" id="franceDate">--</div>
+          <div class="clock-offset" id="franceOffset">UTC --</div>
+        </div>
+
+      </section>
+
+      <!-- STORY -->
+      <section id="story" class="section story-section">
+
+        <div class="section-heading reveal">
+          <span class="section-number">01</span>
+          <div>
+            <span class="eyebrow">a quiet beginning</span>
+            <h2>Our <em>Story</em></h2>
+          </div>
+        </div>
+
+        <div class="story-grid">
+
+          <div class="story-intro glass reveal">
+            <div class="mini-dog" id="storyDog"></div>
+            <div class="speech" id="storySpeech">
+              some stories deserve to be remembered.
+            </div>
+
+            <p>
+              some stories begin quietly.
+              some moments arrive without warning.
+              and somehow, they become memories
+              we never want to forget.
+            </p>
+
+            <div class="story-signature">— a little chapter for lila</div>
+          </div>
+
+          <div class="timeline">
+
+            <article class="timeline-item glass reveal">
+              <span class="timeline-marker">01</span>
+              <div>
+                <span class="timeline-label">the beginning</span>
+                <h3>A little moment</h3>
+                <p>
+                  parfois, il ne faut pas grand-chose.
+                  un regard, une conversation,
+                  une présence qui finit par compter.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item glass reveal">
+              <span class="timeline-marker">02</span>
+              <div>
+                <span class="timeline-label">the memories</span>
+                <h3>Little things</h3>
+                <p>
+                  les petits instants deviennent souvent
+                  les plus beaux souvenirs.
+                  ceux que l'on garde sans même s'en rendre compte.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item glass reveal">
+              <span class="timeline-marker">03</span>
+              <div>
+                <span class="timeline-label">today</span>
+                <h3>This moment</h3>
+                <p>
+                  aujourd'hui, il y a une seule chose
+                  à célébrer : toi, Lila.
+                  simplement toi.
+                </p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="france-cities glass reveal">
+          <div class="cities-heading">
+            <span class="eyebrow">same sky, same time</span>
+            <h3>France Time</h3>
+            <p>
+              toutes ces villes de France métropolitaine
+              partagent le même fuseau horaire.
+            </p>
+          </div>
+
+          <div class="cities-grid" id="citiesGrid"></div>
+        </div>
+
+      </section>
+
+      <!-- MEMORIES -->
+      <section id="memories" class="section memories-section">
+
+        <div class="section-heading centered reveal">
+          <span class="section-number">02</span>
+          <div>
+            <span class="eyebrow">little pieces of time</span>
+            <h2>Our <em>Memories</em></h2>
+          </div>
+        </div>
+
+        <div class="memory-layout">
+
+          <button class="memory-card photo-one glass reveal" data-photo="0">
+            <img src="assets/photo-1.jpg" alt="Memory one" />
+            <span class="memory-caption">a little moment</span>
+            <span class="memory-index">01</span>
+          </button>
+
+          <button class="memory-card photo-two reveal" data-photo="1">
+            <img src="assets/photo-2.jpg" alt="Memory two" />
+            <span class="memory-caption">something beautiful</span>
+            <span class="memory-index">02</span>
+          </button>
+
+          <div class="memory-center glass reveal">
+            <div class="center-paw"></div>
+            <span>five little frames</span>
+            <strong>five little memories</strong>
+            <p>
+              parce que certaines images
+              méritent leur propre petit espace.
+            </p>
+          </div>
+
+          <button class="memory-card photo-three glass reveal" data-photo="2">
+            <img src="assets/photo-3.jpg" alt="Memory three" />
+            <span class="memory-caption">another chapter</span>
+            <span class="memory-index">03</span>
+          </button>
+
+          <button class="memory-card photo-four reveal" data-photo="3">
+            <img src="assets/photo-4.jpg" alt="Memory four" />
+            <span class="memory-caption">close to the heart</span>
+            <span class="memory-index">04</span>
+          </button>
+
+          <button class="memory-card photo-five glass reveal" data-photo="4">
+            <img src="assets/photo-5.jpg" alt="Memory five" />
+            <span class="memory-caption">keep this one</span>
+            <span class="memory-index">05</span>
+          </button>
+
+        </div>
+      </section>
+
+      <!-- LETTER -->
+      <section id="letter" class="section letter-section">
+
+        <div class="section-heading centered reveal">
+          <span class="section-number">03</span>
+          <div>
+            <span class="eyebrow">written especially for you</span>
+            <h2>Une <em>Lettre</em></h2>
+          </div>
+        </div>
+
+        <div class="letter-experience">
+
+          <div class="envelope-area reveal" id="envelopeArea">
+
+            <div class="envelope-shadow"></div>
+
+            <div class="envelope" id="envelope">
+              <div class="envelope-back"></div>
+              <div class="envelope-paper">
+                <span>pour Lila</span>
+              </div>
+              <div class="envelope-front-left"></div>
+              <div class="envelope-front-right"></div>
+              <div class="envelope-front-bottom"></div>
+              <div class="envelope-flap"></div>
+
+              <div class="wax-seal">
+                <span>L</span>
+              </div>
+            </div>
+
+            <button class="primary-btn open-letter" id="openLetter">
+              ouvrir ma lettre
+            </button>
+          </div>
+
+          <article class="letter-paper glass hidden" id="letterPaper">
+
+            <div class="paper-decoration paper-deco-a"></div>
+            <div class="paper-decoration paper-deco-b"></div>
+
+            <div class="letter-header">
+              <span>27 Août</span>
+              <span>pour Lila</span>
+            </div>
+
+            <div class="letter-body" id="letterBody">
+
+              <p>Ma chère Lila,</p>
+
+              <p>
+                aujourd'hui est une journée particulière, simplement
+                parce qu'elle célèbre ton existence. Et même si les mots
+                ne pourront jamais parfaitement exprimer tout ce que
+                l'on peut ressentir pour quelqu'un, j'avais envie
+                d'essayer d'en écrire quelques-uns pour toi.
+              </p>
+
+              <p>
+                je veux d'abord te dire merci. Merci d'être toi,
+                avec tout ce qui fait de toi une personne unique.
+                Merci pour les petits moments, les sourires,
+                les conversations et toutes ces choses qui peuvent
+                sembler simples mais qui prennent une valeur immense
+                lorsqu'elles deviennent des souvenirs.
+              </p>
+
+              <p>
+                je te souhaite une année remplie de douceur.
+                J'espère que tu rencontreras beaucoup de raisons
+                de sourire, des moments qui te feront du bien,
+                des rêves qui deviendront progressivement réalité
+                et des journées dont tu voudras te souvenir longtemps.
+              </p>
+
+              <p>
+                surtout, n'oublie jamais que tu mérites d'être heureuse.
+                Tu mérites de rire sans raison, de croire en tes rêves,
+                de découvrir de nouvelles choses et de continuer
+                à avancer avec cette lumière qui t'appartient.
+              </p>
+
+              <p>
+                il y aura toujours des journées parfaites et d'autres
+                un peu moins faciles. Mais j'espère que, dans les deux,
+                tu trouveras toujours une petite raison de continuer
+                à regarder devant toi avec confiance.
+              </p>
+
+              <p>
+                pour ton anniversaire, je ne souhaite pas seulement
+                que tu reçoives de beaux cadeaux. Je souhaite surtout
+                que tu reçoives de beaux souvenirs, des moments sincères,
+                beaucoup de paix, énormément de bonheur et toutes les
+                petites choses qui rendent la vie plus belle.
+              </p>
+
+              <p>
+                et si un jour tu regardes cette petite page à nouveau,
+                j'espère qu'elle te rappellera une chose très simple :
+                quelque part, quelqu'un a pris le temps de créer
+                un petit monde rien que pour célébrer ton sourire.
+              </p>
+
+              <p>
+                continue d'être toi. Continue de rêver.
+                Continue de grandir, de découvrir, de rire,
+                d'aimer et de construire la vie que tu souhaites.
+              </p>
+
+              <p>
+                joyeux anniversaire, Lila.
+                Que cette nouvelle année de ta vie soit douce,
+                lumineuse et remplie de beaux chapitres.
+              </p>
+
+              <p class="letter-ending">
+                Avec tout mon amour.
+              </p>
+
+            </div>
+
+            <div class="letter-footer">
+              <span class="signature-line"></span>
+              <span>for Lila</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CAKE -->
+      <section id="cake" class="section cake-section">
+
+        <div class="section-heading centered reveal">
+          <span class="section-number">04</span>
+          <div>
+            <span class="eyebrow">one little wish</span>
+            <h2>Make a <em>Wish</em></h2>
+          </div>
+        </div>
+
+        <div class="cake-layout">
+
+          <div class="cake-copy glass reveal">
+            <span class="eyebrow">something sweet</span>
+            <h3>Ferme les yeux.</h3>
+            <p>
+              fais un voeu avant de souffler la bougie.
+              Il paraît que les petits souhaits
+              ont parfois besoin d'un peu de magie.
+            </p>
+
+            <div class="countdown">
+              <span class="countdown-label">until 27 août</span>
+              <div class="countdown-grid">
+                <div>
+                  <strong id="countDays">00</strong>
+                  <span>days</span>
+                </div>
+                <div>
+                  <strong id="countHours">00</strong>
+                  <span>hours</span>
+                </div>
+                <div>
+                  <strong id="countMinutes">00</strong>
+                  <span>minutes</span>
+                </div>
+                <div>
+                  <strong id="countSeconds">00</strong>
+                  <span>seconds</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cake-stage reveal">
+
+            <div class="cake-glow"></div>
+
+            <div class="cake">
+              <div class="cake-candle">
+                <div class="candle-body">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+
+                <div class="flame" id="flame">
+                  <div class="flame-inner"></div>
+                </div>
+
+                <div class="smoke" id="smoke">
+                  <i></i>
+                  <i></i>
+                  <i></i>
+                </div>
+              </div>
+
+              <div class="cake-top">
+                <div class="frosting frosting-top"></div>
+                <div class="strawberry s1"></div>
+                <div class="strawberry s2"></div>
+                <div class="sprinkle sp1"></div>
+                <div class="sprinkle sp2"></div>
+                <div class="sprinkle sp3"></div>
+                <div class="sprinkle sp4"></div>
+              </div>
+
+              <div class="cake-middle">
+                <div class="frosting frosting-middle"></div>
+              </div>
+
+              <div class="cake-bottom">
+                <div class="frosting frosting-bottom"></div>
+              </div>
+
+              <div class="cake-plate"></div>
+            </div>
+
+            <div class="cake-dog" id="cakeDog"></div>
+
+            <div class="cake-message glass">
+              <span>make a wish</span>
+              <small>then blow the candle</small>
+            </div>
+
+          </div>
+
+          <div class="candle-controls glass reveal">
+            <button class="primary-btn" id="blowCandle">
+              souffler
+            </button>
+
+            <button class="secondary-btn" id="resetCandle">
+              rallumer
+            </button>
+
+            <p id="candleStatus">
+              imagine ton voeu...
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- WISH -->
+      <section id="wish" class="section wish-section">
+
+        <div class="wish-background">
+          <div class="wish-orb"></div>
+          <div class="wish-orb wish-orb-two"></div>
+        </div>
+
+        <div class="wish-content glass reveal">
+
+          <div class="wish-dog" id="wishDog"></div>
+
+          <span class="eyebrow">a secret between you and the stars</span>
+
+          <h2>Fais un <em>voeu.</em></h2>
+
+          <p>
+            écris quelque chose que tu aimerais voir
+            devenir réalité.
+          </p>
+
+          <div class="wish-form" id="wishForm">
+            <textarea
+              id="wishInput"
+              maxlength="180"
+              placeholder="écris ton voeu ici..."
+              aria-label="Your wish"
+            ></textarea>
+
+            <button class="primary-btn" id="makeWish">
+              faire un voeu
+            </button>
+          </div>
+
+          <div class="wish-result hidden" id="wishResult">
+            <span>ton voeu est maintenant quelque part parmi les étoiles.</span>
+            <strong id="wishText"></strong>
+            <button class="text-btn" id="newWish">écrire un autre voeu</button>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- LOVE -->
+      <section id="love" class="section love-section">
+
+        <div class="section-heading centered reveal">
+          <span class="section-number">05</span>
+          <div>
+            <span class="eyebrow">something bigger than words</span>
+            <h2>Pour <em>Toujours</em></h2>
+          </div>
+        </div>
+
+        <div class="love-stage reveal">
+
+          <div class="heart-orbit orbit-one"></div>
+          <div class="heart-orbit orbit-two"></div>
+          <div class="heart-particles" id="heartParticles"></div>
+
+          <div class="heart-3d" id="heart3d">
+            <div class="heart-face"></div>
+            <div class="heart-glow"></div>
+          </div>
+
+          <div class="love-dog" id="loveDog"></div>
+
+          <div class="love-message glass">
+            <span>elle est petite,</span>
+            <strong>mais elle représente quelque chose d'immense.</strong>
+            <em>l'amour.</em>
+          </div>
+
+          <div class="drag-hint">
+            drag to rotate
+          </div>
+        </div>
+      </section>
+
+      <!-- SURPRISE -->
+      <section id="surprise" class="section surprise-section">
+
+        <div class="section-heading centered reveal">
+          <span class="section-number">06</span>
+          <div>
+            <span class="eyebrow">one final little thing</span>
+            <h2>Une <em>Surprise</em></h2>
+          </div>
+        </div>
+
+        <div class="surprise-layout">
+
+          <div class="gift-area reveal">
+
+            <button class="gift-box" id="giftBox" aria-label="Open gift box">
+              <div class="gift-glow"></div>
+
+              <div class="gift-lid">
+                <span></span>
+              </div>
+
+              <div class="gift-body">
+                <div class="gift-ribbon-v"></div>
+                <div class="gift-ribbon-h"></div>
+              </div>
+
+              <div class="gift-light"></div>
+              <div class="gift-particles" id="giftParticles"></div>
+            </button>
+
+            <p class="gift-hint">clique sur la boîte</p>
+          </div>
+
+          <div class="surprise-message glass hidden" id="surpriseMessage">
+
+            <div class="surprise-dog" id="surpriseDog"></div>
+
+            <span class="eyebrow">you found it</span>
+
+            <h3>
+              le plus beau cadeau aujourd'hui,
+            </h3>
+
+            <p>
+              c'est simplement de pouvoir
+              célébrer ton existence.
+            </p>
+
+            <div class="surprise-line"></div>
+
+            <span>joyeux anniversaire, Lila.</span>
+          </div>
+        </div>
+
+        <div class="secret-paw-wrap">
+          <button
+            class="secret-paw"
+            id="secretPaw"
+            aria-label="Secret paw"
+            title="something is hidden here"
+          ></button>
+        </div>
+
+      </section>
+
+      <!-- FINAL -->
+      <section class="section final-section">
+
+        <div class="final-glow"></div>
+
+        <div class="final-content reveal">
+
+          <div class="final-dog" id="finalDog"></div>
+
+          <span class="eyebrow">the end of our little journey</span>
+
+          <h2>
+            Merci d'être
+            <em>toi, Lila.</em>
+          </h2>
+
+          <div class="final-date">27 Août</div>
+
+          <p>
+            Joyeux Anniversaire.
+          </p>
+
+          <div class="final-speech speech">
+            à bientôt, lila.<br />
+            n'oublie jamais à quel point tu es précieuse.
+          </div>
+
+          <button class="primary-btn" id="replay">
+            rejouer la surprise
+          </button>
+
+        </div>
+
+        <div class="footer-mark">
+          made with a little pink magic
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- MUSIC PLAYER -->
+    <div class="music-player glass" id="musicPlayer">
+
+      <audio id="music" preload="metadata">
+        <source src="assets/music.mp3" type="audio/mpeg" />
+      </audio>
+
+      <button class="music-toggle" id="musicToggle" aria-label="Play or pause music">
+        <span class="play-icon"></span>
+      </button>
+
+      <div class="music-info">
+        <strong>I Gotta Find Peace of Mind</strong>
+        <span>Ms. Lauryn Hill</span>
+      </div>
+
+      <div class="music-progress">
+        <input
+          type="range"
+          id="musicProgress"
+          min="0"
+          max="100"
+          value="0"
+          aria-label="Music progress"
+        />
+        <div class="music-times">
+          <span id="currentTime">0:00</span>
+          <span id="duration">0:00</span>
+        </div>
+      </div>
+
+      <button class="volume-btn" id="volumeBtn" aria-label="Mute or unmute">
+        <span class="volume-icon"></span>
+      </button>
+
+      <button class="mini-btn" id="miniPlayer" aria-label="Minimize player">
+        −
+      </button>
+    </div>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close photo">
+        ×
+      </button>
+
+      <button class="lightbox-prev" id="lightboxPrev" aria-label="Previous photo">
+        ←
+      </button>
+
+      <div class="lightbox-content glass">
+        <img id="lightboxImage" src="" alt="Expanded memory" />
+        <div class="lightbox-counter">
+          <span id="lightboxCurrent">01</span>
+          /
+          <span>05</span>
+        </div>
+      </div>
+
+      <button class="lightbox-next" id="lightboxNext" aria-label="Next photo">
+        →
+      </button>
+    </div>
+
+    <!-- SECRET MODAL -->
+    <div class="secret-modal" id="secretModal" aria-hidden="true">
+
+      <div class="secret-overlay"></div>
+
+      <div class="secret-content glass">
+
+        <button class="modal-close" id="secretClose" aria-label="Close secret">
+          ×
+        </button>
+
+        <div class="secret-mini-dog" id="secretDog"></div>
+
+        <span class="eyebrow">petit secret trouvé</span>
+
+        <div class="speech secret-speech">
+          tu as trouvé mon petit secret.
+        </div>
+
+        <p>
+          même dans les plus petits coins
+          de ce monde, il y a toujours
+          quelque chose de doux qui t'attend.
+        </p>
+
+        <strong>
+          garde toujours une petite place
+          pour la magie.
+        </strong>
+      </div>
+    </div>
+
+    <!-- TOAST -->
+    <div class="toast" id="toast"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
